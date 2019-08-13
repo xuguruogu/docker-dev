@@ -7,4 +7,4 @@
 
 ## Build
     
-    docker build . -t dev:centos
+    docker build . -t dev:nebula
