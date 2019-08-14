@@ -2,8 +2,13 @@ FROM xuguruogu/dev:base
 MAINTAINER xuguruogu
 
 RUN set -ex && \
+    yum copr enable -y vbatts/bazel && \
     yum install -y bazel && \
-    yum clean all
+    yum clean all -y && \
+    yum autoremove -y
+
+# scl enable devtoolset-7
+SHELL [ "/usr/bin/scl", "enable", "devtoolset-7" ]
 
 RUN mkdir -p /tmp/pkg
 
@@ -20,3 +25,5 @@ ENV CC /usr/local/bin/mpicc
 
 # clean pkg
 RUN rm -rf /tmp/pkg/
+
+CMD [ "/usr/bin/scl", "enable", "devtoolset-7", "/bin/bash"]

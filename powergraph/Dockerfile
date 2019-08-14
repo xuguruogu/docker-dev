@@ -1,4 +1,4 @@
-FROM xuguruogu/dev:base-gcc4
+FROM xuguruogu/dev:base
 MAINTAINER xuguruogu
 
 RUN mkdir -p /tmp/pkg
