@@ -1,5 +1,9 @@
-FROM xuguruogu/dev:base-gcc4
+FROM xuguruogu/dev:base
 MAINTAINER xuguruogu
+
+RUN set -ex && \
+    yum install -y bazel && \
+    yum clean all
 
 RUN mkdir -p /tmp/pkg
 
@@ -12,16 +16,7 @@ RUN set -ex && \
     rm -rf mpich-3.3.1.tar.gz mpich-3.3.1 && \
     popd
 
-# install hdfs
-RUN set -ex && \
-    pushd /tmp/pkg && \
-    wget http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz && \
-    tar xzf hadoop-2.7.7.tar.gz -C /usr/local && \
-    rm -rf hadoop-2.7.7.tar.gz && \
-    popd
-
-ENV HADOOP_HDFS_HOME /usr/local/hadoop-2.7.7
-ENV HADOOP_HOME /usr/local/hadoop-2.7.7
+ENV CC /usr/local/bin/mpicc
 
 # clean pkg
 RUN rm -rf /tmp/pkg/
