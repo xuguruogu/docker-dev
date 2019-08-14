@@ -23,8 +23,8 @@ RUN set -ex && \
     echo 'export JAVA_HOME=\$(readlink -f /usr/bin/java | sed \"s:bin/java::\")' > ~/.zprofile && \
     chsh -s /bin/zsh
 
-#    scl enable devtoolset-7 bash
-SHELL [ "/usr/bin/scl", "enable", "devtoolset-7"]
+#    scl enable devtoolset-7
+SHELL [ "/usr/bin/scl", "enable", "devtoolset-7" ]
 
 RUN mkdir /data
 VOLUME /data

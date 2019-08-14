@@ -4,6 +4,8 @@ set -ex
 user_id=${USER_ID:-0}
 user_name=${USER_NAME:-"root"}
 
+set -- scl enable devtoolset-7 "$@"
+
 if [[ `cat /etc/passwd | cut -f1 -d':' | grep -w "$user_name" -c` -eq 0 && $user_id -ne 0 ]]; then
     useradd -s /bin/zsh -u $user_id -o -m $user_name
     sed -i 's/^##includedir \/etc\/sudoers.d/#includedir \/etc\/sudoers.d/g' /etc/sudoers; \

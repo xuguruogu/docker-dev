@@ -8,7 +8,7 @@ RUN set -ex && \
     pushd /tmp/pkg && \
     wget http://www.mpich.org/static/downloads/3.3.1/mpich-3.3.1.tar.gz && \
     tar -zxvf mpich-3.3.1.tar.gz && \
-    (cd mpich-3.3.1 && ./configure --with-pic --enable-static --disable-shared --disable-fortran --disable-mpi-fortran --enable-mpi-thread-mutliple --prefix=/usr/local/mpich && make -j`nproc` && make install) && \
+    (cd mpich-3.3.1 && ./configure --with-pic --enable-static --disable-shared --disable-fortran --disable-mpi-fortran --enable-mpi-thread-mutliple && make -j`nproc` && make install) && \
     rm -rf mpich-3.3.1.tar.gz mpich-3.3.1 && \
     popd
 
