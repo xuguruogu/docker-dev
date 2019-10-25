@@ -4,7 +4,7 @@ MAINTAINER xuguruogu
 RUN set -ex && \
     sed -i 's/tsflags=nodocs//g' /etc/yum.conf && \
     yum install -y epel-release centos-release-scl scl-utils yum-plugin-copr && \
-    yum install -y vim-enhanced lsof tcpdump wget curl telnet git git-lfs man which net-tools iotop dstat ascii sudo && \
+    yum install -y vim-enhanced lsof tcpdump wget curl telnet git git-lfs psmisc subversion man which net-tools iotop dstat ascii sudo && \
     yum install -y autoconf autoconf-archive automake libtool cmake3 gdb make bazel && \
     yum install -y gcc gcc-c++ glibc-static libstdc++-static && \
     yum install -y devtoolset-7-toolchain && \
