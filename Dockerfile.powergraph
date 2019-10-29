@@ -1,0 +1,27 @@
+FROM xuguruogu/dev:base
+MAINTAINER xuguruogu
+
+RUN mkdir -p /tmp/pkg
+
+# install mpich
+RUN set -ex && \
+    pushd /tmp/pkg && \
+    wget http://www.mpich.org/static/downloads/3.3.1/mpich-3.3.1.tar.gz && \
+    tar -zxvf mpich-3.3.1.tar.gz && \
+    (cd mpich-3.3.1 && ./configure --with-pic --enable-static --disable-shared --disable-fortran --disable-mpi-fortran --enable-mpi-thread-mutliple && make -j`nproc` && make install) && \
+    rm -rf mpich-3.3.1.tar.gz mpich-3.3.1 && \
+    popd
+
+# install hdfs
+RUN set -ex && \
+    pushd /tmp/pkg && \
+    wget http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz && \
+    tar xzf hadoop-2.7.7.tar.gz -C /usr/local && \
+    rm -rf hadoop-2.7.7.tar.gz && \
+    popd
+
+ENV HADOOP_HDFS_HOME /usr/local/hadoop-2.7.7
+ENV HADOOP_HOME /usr/local/hadoop-2.7.7
+
+# clean pkg
+RUN rm -rf /tmp/pkg/
