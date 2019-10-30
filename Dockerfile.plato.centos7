@@ -1,4 +1,4 @@
-FROM xuguruogu/dev:base
+FROM xuguruogu/dev/base:centos7
 MAINTAINER xuguruogu
 
 RUN set -ex && \
