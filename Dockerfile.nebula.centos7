@@ -1,0 +1,7 @@
+FROM xuguruogu/dev/base:centos7
+MAINTAINER xuguruogu
+
+# scl enable devtoolset-7
+SHELL [ "/usr/bin/scl", "enable", "devtoolset-7" ]
+
+CMD [ "/usr/bin/scl", "enable", "devtoolset-7", "/bin/bash"]
