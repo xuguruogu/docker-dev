@@ -4,4 +4,15 @@ MAINTAINER xuguruogu
 # scl enable devtoolset-7
 SHELL [ "/usr/bin/scl", "enable", "devtoolset-7" ]
 
+RUN set -ex && \
+    cd /tmp && \
+    curl -fsSL https://studygolang.com/dl/golang/go1.13.4.linux-amd64.tar.gz -o go1.13.4.linux-amd64.tar.gz && \
+    tar zxf go1.13.4.linux-amd64.tar.gz -C /usr/local/ && \
+    rm go1.13.4.linux-amd64.tar.gz
+
+ENV GOROOT=/usr/local/go
+ENV GOPATH=/usr/local/nebula/
+ENV GO111MODULE on
+ENV PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
+
 CMD [ "/usr/bin/scl", "enable", "devtoolset-7", "/bin/bash"]
