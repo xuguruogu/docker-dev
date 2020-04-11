@@ -10,4 +10,5 @@
     docker exec -it -u $(id -u) base_dev /bin/bash
 
 ## Build
+    docker build -t xuguruogu/dev/base:centos7 --network host -f Dockerfile.base.centos7 .
     docker build -t xuguruogu/dev/nebula:centos7 --network host -f Dockerfile.nebula.centos7 .
