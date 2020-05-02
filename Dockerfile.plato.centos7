@@ -23,6 +23,15 @@ RUN set -ex && \
     rm -rf mpich-3.2.1.tar.gz mpich-3.2.1 && \
     popd
 
+# install hadoop
+RUN set -ex && \
+    curl -o /tmp/hadoop-2.10.0.tar.gz -SL "https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz" && \
+    tar -zxvf /tmp/hadoop-2.10.0.tar.gz -C /usr/local/ && \
+    ln -s /usr/local/hadoop-2.10.0 /usr/local/hadoop && \
+    rm /tmp/hadoop-2.10.0.tar.gz
+
+ENV HADOOP_HOME /usr/local/hadoop
+
 # clean pkg
 RUN rm -rf /tmp/pkg/
 

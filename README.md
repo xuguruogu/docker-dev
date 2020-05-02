@@ -11,4 +11,5 @@
 
 ## Build
     docker build -t xuguruogu/dev/base:centos7 --network host -f Dockerfile.base.centos7 .
+    docker build -t xuguruogu/dev/plato:centos7 --network host -f Dockerfile.plato.centos7 .
     docker build -t xuguruogu/dev/nebula:centos7 --network host -f Dockerfile.nebula.centos7 .

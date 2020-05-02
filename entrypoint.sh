@@ -15,4 +15,5 @@ if [[ `cat /etc/passwd | cut -f1 -d':' | grep -w "$user_name" -c` -eq 0 ]]; then
     echo "$user_name ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/$user_name
 fi
 
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::" | sed "s:jre/::")
 exec /usr/local/bin/gosu "$user_name" "$@"
