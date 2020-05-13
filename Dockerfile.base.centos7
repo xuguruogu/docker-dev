@@ -28,6 +28,7 @@ RUN sed 's@sessPermitRootLoginion\s*required\s*pam_loginuid.so@session optional 
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 RUN ssh-keygen -A
+RUN yes password | passwd root
 EXPOSE 22
 
 RUN mkdir /data
