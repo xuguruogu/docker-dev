@@ -11,6 +11,7 @@ RUN set -ex && \
     yum install -y devtoolset-7-toolchain && \
     yum install -y java-1.8.0-openjdk-devel && \
     yum install -y zlib-devel unzip numactl-devel && \
+    yum install -y openssl openssh-server && \
     yum clean all -y && \
     yum autoremove -y && \
     ln -s /usr/bin/cmake3 /usr/bin/cmake
