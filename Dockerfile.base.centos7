@@ -8,7 +8,7 @@ RUN set -ex && \
     yum install -y m4 xz readline-devel ncurses-devel gettext redhat-lsb-core && \
     yum install -y autoconf autoconf-archive automake libtool cmake3 gdb make bazel && \
     yum install -y gcc gcc-c++ glibc-static libstdc++-static clang clang-devel && \
-    yum install -y devtoolset-7-toolchain && \
+    yum install -y devtoolset-7-toolchain devtoolset-9-toolchain && \
     yum install -y java-1.8.0-openjdk-devel && \
     yum install -y zlib-devel unzip numactl-devel && \
     yum install -y openssl openssh-server && \
