@@ -3,20 +3,21 @@ FROM centos:7
 RUN set -ex && \
     sed -i 's/tsflags=nodocs//g' /etc/yum.conf && \
     yum install -y epel-release centos-release-scl scl-utils yum-plugin-copr && \
+    yum install -y http://repo.okay.com.mx/centos/7/x86_64/release/okay-release-1-1.noarch.rpm && \
     yum install -y \
         vim-enhanced lsof tcpdump wget curl telnet git git-lfs psmisc subversion \
         man which net-tools iotop dstat ascii sudo patch expect \
         m4 xz readline-devel ncurses-devel gettext redhat-lsb-core ccache tzdata \
         autoconf autoconf-archive automake libtool cmake3 gdb make bazel ninja-build perl pkgconfig \
         gcc gcc-c++ glibc-static libstdc++-static clang clang-devel python python-lxml python-requests \
-        devtoolset-7-toolchain devtoolset-9-toolchain java-1.8.0-openjdk-devel \
+        devtoolset-7-toolchain devtoolset-9-toolchain llvm-toolset-7 java-1.8.0-openjdk-devel \
         zlib-devel unzip numactl-devel \
         openssl openssh-server && \
     yum clean all -y && \
     yum autoremove -y && \
     ln -s /usr/bin/cmake3 /usr/bin/cmake
 
-SHELL [ "/usr/bin/scl", "enable", "devtoolset-9" ]
+SHELL [ "/usr/bin/scl", "enable", "devtoolset-9", "llvm-toolset-7" ]
 
 RUN set -ex && \
     cd /tmp && \
@@ -29,7 +30,7 @@ ENV GO111MODULE on
 ENV PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 
 RUN set -ex && \
-    curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.12/gosu-amd64" && \
+    curl -o /usr/local/bin/gosu -fsSL "https://github.com/tianon/gosu/releases/download/1.12/gosu-amd64" && \
     chmod +x /usr/local/bin/gosu && \
     gosu nobody true
 
@@ -49,4 +50,4 @@ WORKDIR /data
 COPY entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["entrypoint.sh"]
 # CMD ["/bin/bash"]
-CMD [ "/usr/bin/scl", "enable", "devtoolset-9", "/bin/bash"]
+CMD [ "/usr/bin/scl", "enable", "devtoolset-9", "llvm-toolset-7", "/bin/bash"]
