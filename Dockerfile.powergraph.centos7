@@ -1,5 +1,4 @@
 FROM xuguruogu/dev/base:centos7
-MAINTAINER xuguruogu
 
 RUN mkdir -p /tmp/pkg
 
